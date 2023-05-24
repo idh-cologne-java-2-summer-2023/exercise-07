@@ -2,23 +2,25 @@ package idh.java;
 
 
 import java.util.Iterator;
+import java.util.Map;
 
 class AccountIterator implements Iterator<Account> {
 	int currentPosition = 0;
-	Account[] accounts;
+	Bank bank;
 	
-	public AccountIterator(Account[] accounts) {
-		this.accounts = accounts;
+	public AccountIterator(Bank b) {
+		this.bank = b;
 	}
 	
 	@Override
 	public boolean hasNext() {
-		return currentPosition < accounts.length;
+		return currentPosition < bank.kvAccounts.size();
 	}
 
 	@Override
 	public Account next() {
-		return accounts[currentPosition++];
+		currentPosition++;
+		return bank.getAccount(currentPosition);
 	}
 	
 }
