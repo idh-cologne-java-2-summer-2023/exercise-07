@@ -28,11 +28,25 @@ public class MyLinkedList<T> implements List<T> {
 
 	@Override
 	public boolean contains(Object o) {
-		// TODO Implement!
-		for (T x : this)
+		boolean boo = false;
+		int i = 0;
+		
+		while(boo == false && i < this.size()) {
+			if(this.get(i).equals(o)) {
+				boo = true;
+			}
+			else {
+				boo = false;
+			}
+			i++;
+		}
+		
+		/*for (T x : this)
 			if (o.equals(x))
-				return true;
-		return false;
+				return true;*/
+		//Anm. Ich bin mir nicht sicher, ob der schon enthaltene Code außversehen eingefüht wurde,
+		//da er das selbe wie mein Code tut.
+		return boo;
 	}
 
 	@Override
