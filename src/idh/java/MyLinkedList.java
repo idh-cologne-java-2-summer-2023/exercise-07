@@ -305,21 +305,32 @@ public class MyLinkedList<T> implements List<T> {
 		
 	}
 	
-	private class ListElement {
-		T value;
-		ListElement next;
-		
-		ListElement(T value) {
-			this.value = value;
-		}
-		
-		public int size() {
-			if (next == null) 
-				return 1;
-			else 
-				return 1 + next.size();
-		}
+	@Override
+	public boolean contains(Object o) {
+	    return prefirst.contains(o);
 	}
+
+	private class ListElement {
+	    T value;
+	    ListElement next;
+
+	    ListElement(T value) {
+	        this.value = value;
+	    }
+
+	    public boolean contains(Object o) {
+	        if (o.equals(value)) {
+	            return true;
+	        } else if (next == null) {
+	            return false;
+	        } else {
+	            return next.contains(o);
+	        }
+	    }
+
+	    // Rest des Codes ...
+	}
+
 	
 	/**
 	 * Internal method that iterates over the list, returning the last element (i.e., the one whose next field is null)
