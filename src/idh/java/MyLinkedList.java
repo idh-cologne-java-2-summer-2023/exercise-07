@@ -28,11 +28,12 @@ public class MyLinkedList<T> implements List<T> {
 
 	@Override
 	public boolean contains(Object o) {
-		// TODO Implement!
-		for (T x : this)
-			if (o.equals(x))
-				return true;
-		return false;
+		return prefirst.contains(o);
+		
+//		for (T x : this)
+//			if (o.equals(x))
+//				return true;
+//		return false;
 	}
 
 	@Override
@@ -319,6 +320,15 @@ public class MyLinkedList<T> implements List<T> {
 			else 
 				return 1 + next.size();
 		}
+		
+		public boolean contains(Object element) {
+			if(this.next == null)
+				return false;
+			if(this.next.value.equals(element))
+				return true;
+			else
+				return false || this.next.contains(element);
+		}
 	}
 	
 	/**
@@ -390,8 +400,12 @@ public class MyLinkedList<T> implements List<T> {
 		testReturn("addAll()", true, list.addAll(1, Arrays.asList("I", "am", "an", "example")));
 		testReturn("toString()", "[Achtung,I,am,an,example,Welt]", list.toString());
 		
+		testReturn("contains", true, list.contains("example"));
+		testReturn("contains", false, list.contains("falseString"));
+		
 		list.clear();
 		testReturn("size() after clear()", 0, list.size());
+		
 
 	}
 }
