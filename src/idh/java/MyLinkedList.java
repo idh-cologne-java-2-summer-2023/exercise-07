@@ -28,11 +28,12 @@ public class MyLinkedList<T> implements List<T> {
 
 	@Override
 	public boolean contains(Object o) {
-		// TODO Implement!
-		for (T x : this)
-			if (o.equals(x))
-				return true;
-		return false;
+//
+//		for (T x : this)
+//			if (o.equals(x))
+//				return true;
+//		return false;
+		return prefirst.contains(o);
 	}
 
 	@Override
@@ -319,6 +320,18 @@ public class MyLinkedList<T> implements List<T> {
 			else 
 				return 1 + next.size();
 		}
+		
+		public boolean contains(Object o) {
+			if(next == null) {
+				return false;
+			}else {
+				if(next.value.equals(o)) {
+					return true;
+				}else {
+					return next.contains(o);
+				}
+			}
+	}
 	}
 	
 	/**
@@ -353,6 +366,7 @@ public class MyLinkedList<T> implements List<T> {
 		}
 		return null;
 	}
+
 	
 	/**
 	 * This method is used in the main function to verify that different methods return the correct result.
@@ -389,6 +403,9 @@ public class MyLinkedList<T> implements List<T> {
 		testReturn("toString()", "[Achtung,Welt]", list.toString());
 		testReturn("addAll()", true, list.addAll(1, Arrays.asList("I", "am", "an", "example")));
 		testReturn("toString()", "[Achtung,I,am,an,example,Welt]", list.toString());
+		testReturn("contains(Welt)", "true", list.contains("Welt"));
+		testReturn("contains(NilsReiter)", "false", list.contains("NilsReiter"));
+		
 		
 		list.clear();
 		testReturn("size() after clear()", 0, list.size());
