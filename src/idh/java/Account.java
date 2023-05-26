@@ -6,23 +6,23 @@ package idh.java;
  * @author reiterns
  *
  */
-public class Account {
+public class Account<T> {
 	// the balance of the account
 	int balance;
 	
 	// the id of the account
-	int id;
+	T id;
 
-	public Account(int id, int status) {
+	public Account(T id, int status) {
 		this.id = id;
 		this.balance = status;
 	}
 	
-	public int getId() {
+	public T getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(T id) {
 		this.id = id;
 	}
 

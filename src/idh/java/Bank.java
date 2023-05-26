@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.Random;
 
 public class Bank implements Iterable<Account> {
-	static Map<Integer, Account> map = new HashMap<Integer, Account>();
+	static Map<Object, Account> map = new HashMap<Object, Account>();
 	static int length = 5;
 	static Account[] accounts = new Account[length];
 	
@@ -26,9 +26,9 @@ public class Bank implements Iterable<Account> {
 		return new AccountIterator(accounts);
 	}
 	
-	public static Account getAccount(int number) {
+	public static Account getAccount(Object number) {
 		for(int i = 0; i < map.size(); i++) {
-			if(number == map.get(number).id){
+			if(number.equals(map.get(number).id)){
 				Account account = map.get(number);
 				return account;
 			}else {
@@ -37,12 +37,25 @@ public class Bank implements Iterable<Account> {
 		}
 		return null;
 	}
+	
+	public static void changeNumber(Object currentNumber, Object newNumber) {
+		Account account = getAccount(currentNumber);
+		account.setId(newNumber);
+		System.out.println(account.id);
+
+	}
+	
 	public static void main(String[] args) {
 		//Aufgabe 1
 		Bank bank = new Bank();
 		System.out.println(map.get(0));
 		System.out.println(accounts[0]);
 		System.out.println(getAccount(3));
+		
+		//Aufgabe 2
+		changeNumber(2, "💸");
+		changeNumber(3, "cat_haz_cash");
+		changeNumber(4, "1234@5678");
 		
 	}
 }
