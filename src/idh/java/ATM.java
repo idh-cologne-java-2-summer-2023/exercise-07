@@ -45,7 +45,7 @@ public class ATM  {
 		}
 		
 		// check for existence of the account
-		Account account = getAccount(accountNumber);
+		Account account = bank.getAccount(accountNumber);
 		if (account == null) {
 			System.out.println("Sorry, this account doesn't exist.");
 			return;
@@ -70,6 +70,7 @@ public class ATM  {
 	public static void main(String[] args) {
 		Bank bank = new Bank();
 		ATM atm = new ATM(bank);
+		bank.Hash();
 		atm.run();
 	};
 	
@@ -79,12 +80,12 @@ public class ATM  {
 	 * @param id
 	 * @return
 	 */
-	protected Account getAccount(int id) {
-		for (Account account : bank) {
-			if (account.getId() == id) 
-				return account;
-		}
-		return null;
-	}
+//	protected Account getAccount(int id) {
+//		for (Account account : bank) {
+//			if (account.getId() == id) 
+//				return account;
+//		}
+//		return null;
+//	}
 
 }
