@@ -15,6 +15,29 @@ public class MyLinkedList<T> implements List<T> {
 	 */
 	ListElement prefirst = new ListElement(null);
 	
+	private class ListElement {
+		T value;
+		ListElement next;
+		
+		ListElement(T value) {
+			this.value = value;
+		}
+		
+		public int size() {
+			if (next == null) 
+				return 1;
+			else 
+				return 1 + next.size();
+		}
+
+		public boolean contains(Object object) {
+			if (next == null)
+				return false;
+			if (this.value == object)
+				return true;
+			return next.contains(object);
+		}
+	}
 	
 	@Override
 	public int size() {
@@ -28,11 +51,7 @@ public class MyLinkedList<T> implements List<T> {
 
 	@Override
 	public boolean contains(Object o) {
-		// TODO Implement!
-		for (T x : this)
-			if (o.equals(x))
-				return true;
-		return false;
+		return prefirst.contains(o);
 	}
 
 	@Override
@@ -305,22 +324,6 @@ public class MyLinkedList<T> implements List<T> {
 		
 	}
 	
-	private class ListElement {
-		T value;
-		ListElement next;
-		
-		ListElement(T value) {
-			this.value = value;
-		}
-		
-		public int size() {
-			if (next == null) 
-				return 1;
-			else 
-				return 1 + next.size();
-		}
-	}
-	
 	/**
 	 * Internal method that iterates over the list, returning the last element (i.e., the one whose next field is null)
 	 * @return
@@ -389,7 +392,9 @@ public class MyLinkedList<T> implements List<T> {
 		testReturn("toString()", "[Achtung,Welt]", list.toString());
 		testReturn("addAll()", true, list.addAll(1, Arrays.asList("I", "am", "an", "example")));
 		testReturn("toString()", "[Achtung,I,am,an,example,Welt]", list.toString());
-		
+		testReturn("contains() => true", true, list.contains("I"));
+		testReturn("contains() => false", false, list.contains("Hallo"));
+
 		list.clear();
 		testReturn("size() after clear()", 0, list.size());
 
