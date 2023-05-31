@@ -59,8 +59,10 @@ public class ATM  {
 		
 		// withdraw
 		account.withdraw(amount);
-		cash += amount;
+		cash -= amount;
 		System.out.println("Ok, here is your money, enjoy!");
+		System.out.println("Current balance: ");
+		System.out.println(account.getBalance());
 
 	};
 
@@ -80,11 +82,8 @@ public class ATM  {
 	 * @return
 	 */
 	protected Account getAccount(int id) {
-		for (Account account : bank) {
-			if (account.getId() == id) 
-				return account;
-		}
-		return null;
+		
+		return bank.getAccount(id);
 	}
 
 }

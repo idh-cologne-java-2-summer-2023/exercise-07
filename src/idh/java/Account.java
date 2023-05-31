@@ -8,10 +8,10 @@ package idh.java;
  */
 public class Account {
 	// the balance of the account
-	int balance;
+	private int balance;
 	
 	// the id of the account
-	int id;
+	private int id;
 
 	public Account(int id, int status) {
 		this.id = id;
