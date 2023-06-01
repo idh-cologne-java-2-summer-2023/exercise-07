@@ -28,11 +28,7 @@ public class MyLinkedList<T> implements List<T> {
 
 	@Override
 	public boolean contains(Object o) {
-		// TODO Implement!
-		for (T x : this)
-			if (o.equals(x))
-				return true;
-		return false;
+		return prefirst.contains(o);
 	}
 
 	@Override
@@ -319,6 +315,16 @@ public class MyLinkedList<T> implements List<T> {
 			else 
 				return 1 + next.size();
 		}
+		
+		public boolean contains(Object o) {
+			if (this.value == o)
+				return true;
+			else if (this.next == null) 
+				return false;
+			else
+				return this.next.contains(o);
+		}
+		
 	}
 	
 	/**
@@ -383,12 +389,16 @@ public class MyLinkedList<T> implements List<T> {
 		testReturn("get(1)", "Welt", list.get(0));
 		list.add(0, "Achtung");
 		testReturn("toString()", "[Achtung,Hallo,Welt]", list.toString());
-		testReturn("set()", "Hallo", list.set(1, "Hello"));
-		testReturn("toString()", "[Achtung,Hello,Welt]", list.toString());
-		testReturn("remove()", "Hello", list.remove(1));
+		testReturn("set()", "Hallo", list.set(1, "Hallo"));
+		testReturn("toString()", "[Achtung,Hallo,Welt]", list.toString());
+		testReturn("remove()", "Hallo", list.remove(1));
 		testReturn("toString()", "[Achtung,Welt]", list.toString());
 		testReturn("addAll()", true, list.addAll(1, Arrays.asList("I", "am", "an", "example")));
 		testReturn("toString()", "[Achtung,I,am,an,example,Welt]", list.toString());
+		
+		testReturn("contains(Welt)", true, list.contains("Welt"));
+		testReturn("contains(Achtung)", true, list.contains("Achtung"));
+		testReturn("contains(Magnum PI)", false, list.contains("Magnum PI"));
 		
 		list.clear();
 		testReturn("size() after clear()", 0, list.size());
