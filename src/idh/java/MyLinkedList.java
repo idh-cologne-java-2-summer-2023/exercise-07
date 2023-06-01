@@ -1,5 +1,6 @@
 package idh.java;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
@@ -11,9 +12,9 @@ public class MyLinkedList<T> implements List<T> {
 
 	/**
 	 * We only need to store a dummy -1th element of our list.
-	 * It nows whether there is a next element.
+	 * It knows whether there is a next element.
 	 */
-	ListElement prefirst = new ListElement(null);
+	ListElement prefirst  = new ListElement(null); //"head"
 	
 	
 	@Override
@@ -27,8 +28,8 @@ public class MyLinkedList<T> implements List<T> {
 	}
 
 	@Override
-	public boolean contains(Object o) {
-		// TODO Implement!
+	public boolean contains(Object o) { //START HERE
+		prefirst.next.equals(o);
 		for (T x : this)
 			if (o.equals(x))
 				return true;
@@ -56,7 +57,11 @@ public class MyLinkedList<T> implements List<T> {
 
 	@Override
 	public Object[] toArray() {
-		// TODO Implement!
+		List<String> list = new ArrayList<String>();
+		Object[] objectArray = list.toArray();
+	    for (Object object : objectArray) {
+	        String str = (String) object; 
+	    }
 		return toArray(new Object[size()]);
 	}
 
@@ -81,7 +86,7 @@ public class MyLinkedList<T> implements List<T> {
 
 	@Override
 	public boolean remove(Object o) {
-		// TODO Implement!
+		
 		ListIterator<T> li = this.listIterator();
 		boolean r = false;
 		while(li.hasNext()) {
@@ -111,10 +116,11 @@ public class MyLinkedList<T> implements List<T> {
 
 	@Override
 	public boolean addAll(int index, Collection<? extends T> c) {
-		// TODO Implement!
+		for (T t : c)
+			this.add(t);
 
 		// Create a new linked list for the collection
-		ListElement first=null, previous=null,current=null;
+		ListElement first= null, previous=null,current=null;
 		for (T x : c) {
 			current = new ListElement(x);
 			if (first == null) {
@@ -165,8 +171,9 @@ public class MyLinkedList<T> implements List<T> {
 
 	@Override
 	public T set(int index, T element) {
-		// TODO Implement!
-
+		if (element == null) {
+			index++;
+			}
 		ListElement le = getElement(index);
 		T ret = le.value;
 		le.value = element;
@@ -175,8 +182,7 @@ public class MyLinkedList<T> implements List<T> {
 
 	@Override
 	public void add(int index, T element) {
-		// TODO Implement!
-
+		add(index, element);
 		ListElement atPosition = getElement(index-1);
 		ListElement newElement = new ListElement(element);
 		newElement.next = atPosition.next;
@@ -185,8 +191,7 @@ public class MyLinkedList<T> implements List<T> {
 
 	@Override
 	public T remove(int index) {
-		// TODO Implement!
-
+		remove(index);
 		ListElement atPreviousPosition = getElement(index-1);
 		T ret = atPreviousPosition.next.value;
 		atPreviousPosition.next  = atPreviousPosition.next.next;
@@ -195,8 +200,7 @@ public class MyLinkedList<T> implements List<T> {
 
 	@Override
 	public int indexOf(Object o) {
-		// TODO Implement!
-
+		indexOf(o);
 		int i = 0;
 		for (T x : this) {
 			if (o.equals(x))
@@ -208,8 +212,7 @@ public class MyLinkedList<T> implements List<T> {
 
 	@Override
 	public int lastIndexOf(Object o) {
-		// TODO Implement!
-
+        lastIndexOf(o);
 		int lastIndex = -1;
 		int index = 0;
 		for (T x : this)  {
