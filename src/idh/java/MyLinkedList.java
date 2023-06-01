@@ -6,6 +6,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
+import idh.java.MyLinkedList.ListElement;
+
 
 public class MyLinkedList<T> implements List<T> {
 
@@ -25,14 +27,31 @@ public class MyLinkedList<T> implements List<T> {
 	public boolean isEmpty() {
 		return prefirst.next == null;
 	}
-
+	
 	@Override
 	public boolean contains(Object o) {
 		// TODO Implement!
-		for (T x : this)
+		
+		if(prefirst.equals(o)) {
+			return true;
+		}
+		
+		ListElement curentNext = prefirst.next;
+		
+		if(curentNext != null) {
+			if(curentNext.equals(o) == false) {
+				curentNext = curentNext.next;
+				curentNext.equals(o);
+			} return true;
+			
+			
+		} return false;
+		/*if (this)
+		
+		for (T x : this) 
 			if (o.equals(x))
 				return true;
-		return false;
+		return false;*/
 	}
 
 	@Override
@@ -305,7 +324,7 @@ public class MyLinkedList<T> implements List<T> {
 		
 	}
 	
-	private class ListElement {
+	public class ListElement {
 		T value;
 		ListElement next;
 		
@@ -389,7 +408,7 @@ public class MyLinkedList<T> implements List<T> {
 		testReturn("toString()", "[Achtung,Welt]", list.toString());
 		testReturn("addAll()", true, list.addAll(1, Arrays.asList("I", "am", "an", "example")));
 		testReturn("toString()", "[Achtung,I,am,an,example,Welt]", list.toString());
-		
+		testReturn("contains()", "false", list.contains("Hund"));
 		list.clear();
 		testReturn("size() after clear()", 0, list.size());
 
