@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.ListIterator;
 
 
+
 public class MyLinkedList<T> implements List<T> {
 
 	/**
@@ -26,13 +27,21 @@ public class MyLinkedList<T> implements List<T> {
 		return prefirst.next == null;
 	}
 
+	
 	@Override
 	public boolean contains(Object o) {
-		// TODO Implement!
-		for (T x : this)
-			if (o.equals(x))
-				return true;
-		return false;
+	    for (T x : this) {
+	        if (o == null) {
+	            if (x == null) {
+	                return true;
+	            }
+	        } else {
+	            if (o.equals(x)) {
+	                return true;
+	            }
+	        }
+	    }
+	    return false;
 	}
 
 	@Override
@@ -56,10 +65,10 @@ public class MyLinkedList<T> implements List<T> {
 
 	@Override
 	public Object[] toArray() {
-		// TODO Implement!
 		return toArray(new Object[size()]);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public <E> E[] toArray(E[] a) {
 		if (a.length < size()) {
@@ -208,7 +217,7 @@ public class MyLinkedList<T> implements List<T> {
 
 	@Override
 	public int lastIndexOf(Object o) {
-		// TODO Implement!
+	
 
 		int lastIndex = -1;
 		int index = 0;
@@ -394,4 +403,6 @@ public class MyLinkedList<T> implements List<T> {
 		testReturn("size() after clear()", 0, list.size());
 
 	}
+	
 }
+

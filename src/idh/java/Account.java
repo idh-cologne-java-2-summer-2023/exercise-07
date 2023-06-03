@@ -42,5 +42,10 @@ public class Account {
 		this.balance = balance - sum;
 	}
 	
+	public int getAccountNumber() {
+	    return id;
+	}
+
+	
 	
 }
