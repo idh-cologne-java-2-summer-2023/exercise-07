@@ -28,11 +28,19 @@ public class MyLinkedList<T> implements List<T> {
 
 	@Override
 	public boolean contains(Object o) {
-		// TODO Implement!
-		for (T x : this)
-			if (o.equals(x))
-				return true;
-		return false;
+		boolean boo = false;
+		int i = 0;
+		
+		while(boo == false && i < this.size()) {
+			if(this.get(i).equals(o)) {
+				boo = true;
+			}
+			else {
+				boo = false;
+			}
+			i++;
+		}
+		return boo;
 	}
 
 	@Override
