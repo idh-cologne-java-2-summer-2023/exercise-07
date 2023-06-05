@@ -25,6 +25,7 @@ public class ATM  {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		while (true) {
 			try {
+				System.out.print("valid acc 4711, 4712, 4713, 232\n");
 				System.out.print("Enter your account number: ");
 				int accountNumber = Integer.parseInt(br.readLine());
 				System.out.print("Enter the amount to withdraw: ");
@@ -47,6 +48,7 @@ public class ATM  {
 		// check for existence of the account
 		Account account = getAccount(accountNumber);
 		if (account == null) {
+			System.out.println(account);
 			System.out.println("Sorry, this account doesn't exist.");
 			return;
 		}
@@ -60,7 +62,7 @@ public class ATM  {
 		// withdraw
 		account.withdraw(amount);
 		cash += amount;
-		System.out.println("Ok, here is your money, enjoy!");
+		System.out.println("Ok, here is your money, enjoy!" + account.getBalance());
 
 	};
 
@@ -80,11 +82,7 @@ public class ATM  {
 	 * @return
 	 */
 	protected Account getAccount(int id) {
-		for (Account account : bank) {
-			if (account.getId() == id) 
-				return account;
-		}
-		return null;
+		return bank.getAccount(id);
 	}
 
 }

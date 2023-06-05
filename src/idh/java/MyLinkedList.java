@@ -11,7 +11,7 @@ public class MyLinkedList<T> implements List<T> {
 
 	/**
 	 * We only need to store a dummy -1th element of our list.
-	 * It nows whether there is a next element.
+	 * It knows whether there is a next element.
 	 */
 	ListElement prefirst = new ListElement(null);
 	
@@ -28,11 +28,8 @@ public class MyLinkedList<T> implements List<T> {
 
 	@Override
 	public boolean contains(Object o) {
-		// TODO Implement!
-		for (T x : this)
-			if (o.equals(x))
-				return true;
-		return false;
+		return prefirst.contains(o);
+
 	}
 
 	@Override
@@ -319,6 +316,22 @@ public class MyLinkedList<T> implements List<T> {
 			else 
 				return 1 + next.size();
 		}
+		
+		public boolean contains(Object e) {
+			if (next == null) { 
+				System.out.println("no next");		
+
+				return false;}
+			else if(next.value.equals(e)) {
+				System.out.println("found");		
+				return true;
+			}
+			else {
+				System.out.println("not found and next");		
+				return next.contains(e);		
+
+			}
+		}
 	}
 	
 	/**
@@ -392,6 +405,15 @@ public class MyLinkedList<T> implements List<T> {
 		
 		list.clear();
 		testReturn("size() after clear()", 0, list.size());
+		
+		//10 Objekte for testing contains
+		 for (int i = 1; i <= 10; i++) {
+	            String object = "Object " + i;
+	            list.add(object);
+		 }
+		// contains test
+		list.contains("Object 3");	
+		
 
 	}
 }
