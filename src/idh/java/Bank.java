@@ -3,6 +3,7 @@ package idh.java;
 
 import java.util.Iterator;
 import java.util.Random;
+import java.util.HashMap;
 
 public class Bank implements Iterable<Account> {
 	Account[] accounts = new Account[5];
@@ -13,6 +14,11 @@ public class Bank implements Iterable<Account> {
 		for (int i = 0; i < accounts.length; i++) {
 			accounts[i] = new Account(i, random.nextInt(1000));
 		}
+		HashMap<Integer, String> bank_map = new HashMap<Integer, String>();
+		bank_map(account, accounts);
+		
+		System.out.println("Der Account gehört zu der Kontonummer:" + bank_map);
+
 	}
 	
 	@Override
@@ -21,8 +27,13 @@ public class Bank implements Iterable<Account> {
 	}
 	
 	public Account getAccount(int number) {
-		// TODO: Implement
-		return null;
+		for (Account account : accounts) {
+			if(account.getAccount() == number) {
+				return account;
+			}
 	}
-
+		return null;
+		
+	}
 }
+

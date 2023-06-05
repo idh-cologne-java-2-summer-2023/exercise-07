@@ -14,7 +14,13 @@ public class MyLinkedList<T> implements List<T> {
 	 * It nows whether there is a next element.
 	 */
 	ListElement prefirst = new ListElement(null);
+	private Object next;
 	
+	public int contains() {
+		if (this.next == null) {
+	}
+		return 1;
+	}
 	
 	@Override
 	public int size() {
@@ -313,6 +319,11 @@ public class MyLinkedList<T> implements List<T> {
 			this.value = value;
 		}
 		
+		public int contains() {
+			// TODO Auto-generated method stub
+			return 0;
+		}
+
 		public int size() {
 			if (next == null) 
 				return 1;
@@ -374,8 +385,10 @@ public class MyLinkedList<T> implements List<T> {
 		MyLinkedList<String> list = new MyLinkedList<String>();
 		
 		testReturn("size() with an empty list", 0, list.size());
+		testReturn("size() with an empty list", 0, list.contains());
 		testReturn("add()", true, list.add("Hallo"));
 		testReturn("size() after add()", 1, list.size());
+		testReturn("size() after add()", 1, list.contains());
 		testReturn("get(0)", "Hallo", list.get(0));
 		testReturn("toString()", "[Hallo]", list.toString());
 		testReturn("add()", true, list.add("Welt"));
@@ -392,6 +405,7 @@ public class MyLinkedList<T> implements List<T> {
 		
 		list.clear();
 		testReturn("size() after clear()", 0, list.size());
+		testReturn("size() after clear()", 0, list.contains());
 
 	}
 }

@@ -41,6 +41,11 @@ public class Account {
 	public void withdraw(int sum) {
 		this.balance = balance - sum;
 	}
+
+	public int getAccount() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	
 	
 }
