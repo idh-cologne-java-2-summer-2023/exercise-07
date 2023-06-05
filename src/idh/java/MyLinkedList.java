@@ -11,7 +11,7 @@ public class MyLinkedList<T> implements List<T> {
 
 	/**
 	 * We only need to store a dummy -1th element of our list.
-	 * It nows whether there is a next element.
+	 * It knows whether there is a next element.
 	 */
 	ListElement prefirst = new ListElement(null);
 	
@@ -34,6 +34,16 @@ public class MyLinkedList<T> implements List<T> {
 				return true;
 		return false;
 	}
+
+// Test an der falschen? Stelle. ignorieren
+	
+//	public boolean containsTest(Object o) {	
+//		if (o == this) {
+//			return true;
+//		} else if (this.next == null) {
+//			return false;
+//		} return containsTest(o);
+//	}
 
 	@Override
 	public Iterator<T> iterator() {
@@ -319,6 +329,17 @@ public class MyLinkedList<T> implements List<T> {
 			else 
 				return 1 + next.size();
 		}
+
+// müsste an der richtigen Stelle sein, wird nicht aufgerufen		
+		public boolean contains(Object o) {
+			if (next == null) {
+				return false;
+			}
+			else if (o == value) {
+				return true;
+			} else return next.contains(o);
+		}
+		
 	}
 	
 	/**
@@ -392,6 +413,17 @@ public class MyLinkedList<T> implements List<T> {
 		
 		list.clear();
 		testReturn("size() after clear()", 0, list.size());
+				
+		list.add("Hallo");
+		list.add("Welt");
+		list.add("!");
+				
+		testReturn("containsTest()", 3, list.size());
 
+// sinnloser Test, da die falsche contains() aufgerufen wird 		
+		testReturn("contains()", true, list.contains("Hallo"));
+		testReturn("contains()", true, list.contains("!"));
+		testReturn("contains()", false, list.contains("Tschüss"));
+		
 	}
 }
