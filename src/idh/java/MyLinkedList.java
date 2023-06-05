@@ -15,6 +15,7 @@ public class MyLinkedList<T> implements List<T> {
 	 */
 	ListElement prefirst = new ListElement(null);
 	
+	ListElement current = prefirst.next;
 	
 	@Override
 	public int size() {
@@ -26,12 +27,20 @@ public class MyLinkedList<T> implements List<T> {
 		return prefirst.next == null;
 	}
 
+
 	@Override
 	public boolean contains(Object o) {
-		// TODO Implement!
-		for (T x : this)
-			if (o.equals(x))
-				return true;
+	
+		
+		if (o.equals(current)) {
+			return true;
+		}else if (current.next == null) {
+			return false;
+		}else {
+			current = current.next;
+			contains(o);
+		}
+		
 		return false;
 	}
 
