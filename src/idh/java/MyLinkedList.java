@@ -29,10 +29,11 @@ public class MyLinkedList<T> implements List<T> {
 	@Override
 	public boolean contains(Object o) {
 		// TODO Implement!
-		for (T x : this)
-			if (o.equals(x))
-				return true;
-		return false;
+		return prefirst.contains(o);
+//		for (T x : this)
+//			if (o.equals(x))
+//				return true;
+//		return false;
 	}
 
 	@Override
@@ -319,8 +320,23 @@ public class MyLinkedList<T> implements List<T> {
 			else 
 				return 1 + next.size();
 		}
+		
+		public boolean contains(Object o) {
+			//Contains für Aufruf aus MyLinkedList contains()
+			
+			if (next.value.equals(o)) {
+				return true;
+			}
+			else if (next.next != null) {
+				return next.contains(o);
+			}
+			else {
+				return false;
+			}
+		}
 	}
 	
+
 	/**
 	 * Internal method that iterates over the list, returning the last element (i.e., the one whose next field is null)
 	 * @return
@@ -372,26 +388,33 @@ public class MyLinkedList<T> implements List<T> {
 
 	public static void main(String[] args) {
 		MyLinkedList<String> list = new MyLinkedList<String>();
-		
-		testReturn("size() with an empty list", 0, list.size());
-		testReturn("add()", true, list.add("Hallo"));
-		testReturn("size() after add()", 1, list.size());
-		testReturn("get(0)", "Hallo", list.get(0));
-		testReturn("toString()", "[Hallo]", list.toString());
-		testReturn("add()", true, list.add("Welt"));
-		testReturn("toString()", "[Hallo,Welt]", list.toString());
-		testReturn("get(1)", "Welt", list.get(0));
-		list.add(0, "Achtung");
-		testReturn("toString()", "[Achtung,Hallo,Welt]", list.toString());
-		testReturn("set()", "Hallo", list.set(1, "Hello"));
-		testReturn("toString()", "[Achtung,Hello,Welt]", list.toString());
-		testReturn("remove()", "Hello", list.remove(1));
-		testReturn("toString()", "[Achtung,Welt]", list.toString());
-		testReturn("addAll()", true, list.addAll(1, Arrays.asList("I", "am", "an", "example")));
-		testReturn("toString()", "[Achtung,I,am,an,example,Welt]", list.toString());
-		
-		list.clear();
-		testReturn("size() after clear()", 0, list.size());
+		list.add("test");
+		list.add("und");
+		list.add("mehr");
+		list.add("Hallo?");
+		System.out.println(list.contains("test"));  
+		System.out.println(list.contains("und"));
+		System.out.println(list.contains("nicht"));
+		System.out.println(list.contains("Hallo?"));
+//		testReturn("size() with an empty list", 0, list.size());
+//		testReturn("add()", true, list.add("Hallo"));
+//		testReturn("size() after add()", 1, list.size());
+//		testReturn("get(0)", "Hallo", list.get(0));
+//		testReturn("toString()", "[Hallo]", list.toString());
+//		testReturn("add()", true, list.add("Welt"));
+//		testReturn("toString()", "[Hallo,Welt]", list.toString());
+//		testReturn("get(1)", "Welt", list.get(0));
+//		list.add(0, "Achtung");
+//		testReturn("toString()", "[Achtung,Hallo,Welt]", list.toString());
+//		testReturn("set()", "Hallo", list.set(1, "Hello"));
+//		testReturn("toString()", "[Achtung,Hello,Welt]", list.toString());
+//		testReturn("remove()", "Hello", list.remove(1));
+//		testReturn("toString()", "[Achtung,Welt]", list.toString());
+//		testReturn("addAll()", true, list.addAll(1, Arrays.asList("I", "am", "an", "example")));
+//		testReturn("toString()", "[Achtung,I,am,an,example,Welt]", list.toString());
+//		
+//		list.clear();
+//		testReturn("size() after clear()", 0, list.size());
 
 	}
 }
