@@ -15,6 +15,30 @@ public class MyLinkedList<T> implements List<T> {
 	 */
 	ListElement prefirst = new ListElement(null);
 	
+	private Node head;
+	private Node tail;
+
+	// Node Class = Nodes/Entries in the LikedList
+	// String value stands for Element in the in the Node and Node next for reference to next Node in the List.
+	private static class Node {
+		Object o;
+		Node next;
+		
+		Node(Object o) {
+			this.o = o;
+			this.next = null;
+		}
+	}
+	
+	public boolean containsHelper(Node head, Object o) {
+		if (head == null) {
+			return false;
+		}
+		if (head.o.equals(o)) {
+			return true;
+		}
+		return containsHelper(head.next, o);
+	}
 	
 	@Override
 	public int size() {
@@ -28,11 +52,7 @@ public class MyLinkedList<T> implements List<T> {
 
 	@Override
 	public boolean contains(Object o) {
-		// TODO Implement!
-		for (T x : this)
-			if (o.equals(x))
-				return true;
-		return false;
+		return containsHelper(head, o);
 	}
 
 	@Override
@@ -392,6 +412,7 @@ public class MyLinkedList<T> implements List<T> {
 		
 		list.clear();
 		testReturn("size() after clear()", 0, list.size());
-
+		list.add("Hello");
+		testReturn(null, list.contains("Hallo"), list);
 	}
 }
