@@ -1,10 +1,13 @@
 package idh.java;
 
 
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Random;
 
 public class Bank implements Iterable<Account> {
+	
+	HashMap <Integer, Account> accountMap = new HashMap<>();
 	Account[] accounts = new Account[5];
 
 	public Bank() {
@@ -21,8 +24,8 @@ public class Bank implements Iterable<Account> {
 	}
 	
 	public Account getAccount(int number) {
-		// TODO: Implement
-		return null;
+		
+		return accountMap.get(number);
 	}
 
 }

@@ -28,11 +28,16 @@ public class MyLinkedList<T> implements List<T> {
 
 	@Override
 	public boolean contains(Object o) {
-		// TODO Implement!
-		for (T x : this)
-			if (o.equals(x))
-				return true;
-		return false;
+		
+		return prefirst.contains(o);
+	
+	
+		//for (T x : this)
+		//	if (o.equals(x))
+	//			return true;
+	//return false;
+	
+	
 	}
 
 	@Override
@@ -56,7 +61,7 @@ public class MyLinkedList<T> implements List<T> {
 
 	@Override
 	public Object[] toArray() {
-		// TODO Implement!
+		
 		return toArray(new Object[size()]);
 	}
 
@@ -81,7 +86,7 @@ public class MyLinkedList<T> implements List<T> {
 
 	@Override
 	public boolean remove(Object o) {
-		// TODO Implement!
+		
 		ListIterator<T> li = this.listIterator();
 		boolean r = false;
 		while(li.hasNext()) {
@@ -111,7 +116,7 @@ public class MyLinkedList<T> implements List<T> {
 
 	@Override
 	public boolean addAll(int index, Collection<? extends T> c) {
-		// TODO Implement!
+		
 
 		// Create a new linked list for the collection
 		ListElement first=null, previous=null,current=null;
@@ -165,7 +170,7 @@ public class MyLinkedList<T> implements List<T> {
 
 	@Override
 	public T set(int index, T element) {
-		// TODO Implement!
+	
 
 		ListElement le = getElement(index);
 		T ret = le.value;
@@ -175,7 +180,7 @@ public class MyLinkedList<T> implements List<T> {
 
 	@Override
 	public void add(int index, T element) {
-		// TODO Implement!
+		
 
 		ListElement atPosition = getElement(index-1);
 		ListElement newElement = new ListElement(element);
@@ -185,7 +190,7 @@ public class MyLinkedList<T> implements List<T> {
 
 	@Override
 	public T remove(int index) {
-		// TODO Implement!
+	
 
 		ListElement atPreviousPosition = getElement(index-1);
 		T ret = atPreviousPosition.next.value;
@@ -195,8 +200,7 @@ public class MyLinkedList<T> implements List<T> {
 
 	@Override
 	public int indexOf(Object o) {
-		// TODO Implement!
-
+		
 		int i = 0;
 		for (T x : this) {
 			if (o.equals(x))
@@ -208,7 +212,7 @@ public class MyLinkedList<T> implements List<T> {
 
 	@Override
 	public int lastIndexOf(Object o) {
-		// TODO Implement!
+		
 
 		int lastIndex = -1;
 		int index = 0;
@@ -313,6 +317,11 @@ public class MyLinkedList<T> implements List<T> {
 			this.value = value;
 		}
 		
+		public boolean contains(Object o) {
+			// TODO Auto-generated method stub
+			return false;
+		}
+
 		public int size() {
 			if (next == null) 
 				return 1;
