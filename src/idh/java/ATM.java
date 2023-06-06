@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 public class ATM  {
 	
 	// initial cash in the ATM
-	int cash = 100;
+	int cash = 1000;
 
 	Bank bank;
 	
@@ -30,6 +30,8 @@ public class ATM  {
 				System.out.print("Enter the amount to withdraw: ");
 				int amount = Integer.parseInt(br.readLine());
 				cashout(accountNumber, amount);
+				//check if getAccount is working
+				System.out.println("acc num 1 = " + bank.getAccount(1));
 			} catch (Exception e) {
 				e.printStackTrace();
 				break;
