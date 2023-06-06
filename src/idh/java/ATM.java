@@ -45,7 +45,7 @@ public class ATM  {
 		}
 		
 		// check for existence of the account
-		Account account = getAccount(accountNumber);
+		Account account = bank.getAccount(accountNumber);
 		if (account == null) {
 			System.out.println("Sorry, this account doesn't exist.");
 			return;
