@@ -15,6 +15,7 @@ public class MyLinkedList<T> implements List<T> {
 	 */
 	ListElement prefirst = new ListElement(null);
 	
+
 	
 	@Override
 	public int size() {
@@ -26,14 +27,20 @@ public class MyLinkedList<T> implements List<T> {
 		return prefirst.next == null;
 	}
 
-	@Override
-	public boolean contains(Object o) {
-		// TODO Implement!
-		for (T x : this)
-			if (o.equals(x))
-				return true;
-		return false;
-	}
+	
+
+	
+	
+    @Override
+    public boolean contains(Object o) {
+        // TODO Implement!  unten implementiert
+        for (T x : this)
+            if (o.equals(x))
+                return true;
+        return false;
+    }
+ 
+	
 
 	@Override
 	public Iterator<T> iterator() {
@@ -318,6 +325,16 @@ public class MyLinkedList<T> implements List<T> {
 				return 1;
 			else 
 				return 1 + next.size();
+		}
+		
+		public boolean contains(Object o) {
+		    if (value.equals(o)) {
+		        return true; 
+		    } else if (next != null) {
+		        return next.contains(o); 
+		    } else {
+		        return false; 
+		    }
 		}
 	}
 	
