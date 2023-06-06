@@ -8,6 +8,7 @@ import java.util.ListIterator;
 
 
 public class MyLinkedList<T> implements List<T> {
+	
 
 	/**
 	 * We only need to store a dummy -1th element of our list.
@@ -28,12 +29,18 @@ public class MyLinkedList<T> implements List<T> {
 
 	@Override
 	public boolean contains(Object o) {
-		// TODO Implement!
-		for (T x : this)
-			if (o.equals(x))
-				return true;
-		return false;
-	}
+        return containsRecursive(prefirst.next, o);
+    }
+
+    private boolean containsRecursive(ListElement current, Object o) {
+        if (current == null) {
+            return false; // Ende der Liste erreicht, Wert nicht gefunden
+        } else if (o.equals(current.value)) {
+            return true; // Wert gefunden
+        } else {
+            return containsRecursive(current.next, o); // Wert nicht gefunden, suche im nächsten Element
+        }
+    }
 
 	@Override
 	public Iterator<T> iterator() {
