@@ -26,5 +26,4 @@ public class Bank implements Iterable<Account> {
 		// TODO: Implement
 		return accHashMap.get(number);
 	}
-
 }
