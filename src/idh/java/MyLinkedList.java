@@ -13,14 +13,18 @@ public class MyLinkedList<T> implements List<T> {
 	 * We only need to store a dummy -1th element of our list.
 	 * It nows whether there is a next element.
 	 */
+	
+	//damit erstes Element ersetzt wird
 	ListElement prefirst = new ListElement(null);
 	
-	
+	//schließt dummy-element aus Zählung aus
 	@Override
 	public int size() {
 		return prefirst.size() - 1;
 	}
 
+	//Prüft, ob nächstes Element nach prefirst vorhanden ist
+	// setzt nächstes auf null
 	@Override
 	public boolean isEmpty() {
 		return prefirst.next == null;
@@ -28,7 +32,9 @@ public class MyLinkedList<T> implements List<T> {
 
 	@Override
 	public boolean contains(Object o) {
-		// TODO Implement!
+		// Ich verstehe nicht, wie ich die contains-Methode analog zu size() bilden soll?
+		//geht es um die rekursive Implementierung?
+		//Über was soll ich also contains() laufen lassen?
 		for (T x : this)
 			if (o.equals(x))
 				return true;
@@ -44,7 +50,8 @@ public class MyLinkedList<T> implements List<T> {
 			public boolean hasNext() {
 				return next != null;
 			}
-
+			
+			//2x skip = das übernächste Element
 			@Override
 			public T next() {
 				T ret = next.value;
@@ -54,12 +61,15 @@ public class MyLinkedList<T> implements List<T> {
 		};
 	}
 
+	//Vermutung: sorgt dafür, dass Elemente vorne in Liste eingefügt werden
+	//Objekt-Array
 	@Override
 	public Object[] toArray() {
 		// TODO Implement!
 		return toArray(new Object[size()]);
 	}
 
+	//DatentypArray
 	@Override
 	public <E> E[] toArray(E[] a) {
 		if (a.length < size()) {
@@ -75,7 +85,7 @@ public class MyLinkedList<T> implements List<T> {
 	@Override
 	public boolean add(T e) {
 		ListElement newListElement = new ListElement(e);
-		last().next = newListElement;
+		last().next = newListElement; //hinten anhängen
 		return true;
 	}
 
