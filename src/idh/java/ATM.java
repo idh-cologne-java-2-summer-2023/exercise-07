@@ -80,11 +80,13 @@ public class ATM  {
 	 * @return
 	 */
 	protected Account getAccount(int id) {
-		for (Account account : bank) {
-			if (account.getId() == id) 
-				return account;
-		}
-		return null;
+		return bank.getAccount(id);
+		
+//		for (Account account : bank) {
+//			if (account.getId() == id) 
+//				return account;
+//		}
+//		return null;
 	}
 
 }
