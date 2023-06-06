@@ -52,7 +52,10 @@ public class ATM  {
 		}
 		*/
 		// check for balance of the account
-		if (amount > Account.getBalance()) {
+        Account accounting = new Account(accountNumber, amount);
+		accounting.getBalance(accountNumber);
+		 
+		if (amount > getbalance(accountNumber)))) {
 			System.out.println("Sorry, you're out of money.");
 			return;
 		}

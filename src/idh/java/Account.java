@@ -8,7 +8,7 @@ package idh.java;
  */
 public class Account {
 	// the balance of the account
-	static int balance;
+	 int balance;
 	
 	// the id of the account
 	static int id;
@@ -18,7 +18,7 @@ public class Account {
 		this.balance = status;
 	}
 	
-	public static int getId() {
+	public  int getId() {
 		return id;
 	}
 
@@ -26,7 +26,7 @@ public class Account {
 		this.id = id;
 	}
 
-	public static int getBalance() {
+	public  int getBalance() {
 		return balance;
 	}
 
@@ -38,7 +38,7 @@ public class Account {
 	 * Withdraws a sum of money from the account
 	 * @param sum
 	 */
-	public void withdraw(int sum) {
+	public  void withdraw(int sum) {
 		this.balance = balance - sum;
 	}
 	
