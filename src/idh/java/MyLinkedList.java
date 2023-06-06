@@ -320,7 +320,18 @@ public class MyLinkedList<T> implements List<T> {
 				return 1 + next.size();
 		}
 	}
-	
+	public boolean contains1(Object o) {
+	    ListElement current = prefirst.next;
+
+	    while (current != null) {
+	        if (current.value.equals(o)) {
+	            return true;
+	        }
+	        current = current.next;
+	    }
+
+	    return false;
+	}
 	/**
 	 * Internal method that iterates over the list, returning the last element (i.e., the one whose next field is null)
 	 * @return
