@@ -3,6 +3,7 @@ package idh.java;
 
 import java.util.Iterator;
 import java.util.Random;
+import java.util.HashMap;
 
 public class Bank implements Iterable<Account> {
 	Account[] accounts = new Account[5];
@@ -22,7 +23,16 @@ public class Bank implements Iterable<Account> {
 	
 	public Account getAccount(int number) {
 		// TODO: Implement
+		// on it
+		HashMap<Account, Integer> AccIDs = new HashMap<>();
+		while(true){
+		if (iterator().hasNext() == true){
+
+
+		}
 		return null;
+	}
+		
 	}
 
 }
