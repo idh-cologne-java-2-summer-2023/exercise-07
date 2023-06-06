@@ -30,8 +30,17 @@ public class MyLinkedList<T> implements List<T> {
 	public boolean contains(Object o) {
 		// TODO Implement!
 		for (T x : this)
-			if (o.equals(x))
+			if (o==null) {
+				if (x==null) {
+					return true;
+				}
+			} else {
+				if (o.equals(x)) {
 				return true;
+				}
+			}
+	
+				
 		return false;
 	}
 
