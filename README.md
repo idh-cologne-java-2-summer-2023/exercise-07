@@ -1,4 +1,3 @@
-Fortgeschrittene Programmierung (Java 2)
 
 
 # Übung 7
