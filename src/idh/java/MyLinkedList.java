@@ -26,14 +26,21 @@ public class MyLinkedList<T> implements List<T> {
 		return prefirst.next == null;
 	}
 
+	
 	@Override
 	public boolean contains(Object o) {
-		// TODO Implement!
-		for (T x : this)
-			if (o.equals(x))
-				return true;
-		return false;
+	    ListElement current = prefirst.next;
+
+	    while (current != null) {
+	        if (o.equals(current.value)) {
+	            return true;
+	        }
+	        current = current.next;
+	    }
+
+	    return false;
 	}
+	
 
 	@Override
 	public Iterator<T> iterator() {
@@ -353,6 +360,20 @@ public class MyLinkedList<T> implements List<T> {
 		}
 		return null;
 	}
+	
+	public boolean contains1(Object o) {
+	    ListElement current = prefirst.next;
+	    
+	    while (current != null) {
+	        if (o.equals(current.value))
+	            return true;
+	        
+	        current = current.next;
+	    }
+	    
+	    return false;
+	}
+
 	
 	/**
 	 * This method is used in the main function to verify that different methods return the correct result.
