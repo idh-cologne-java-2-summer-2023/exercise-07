@@ -12,7 +12,6 @@ public class Bank implements Iterable<Account> {
 	private Map<Integer, Account> accountMap = new HashMap<>();
 	
 	public Bank() {
-		// create accounts with varying balances
 		Random random = new Random();
 		for (int i = 0; i < accounts.length; i++) {
 			accounts[i] = new Account(i, random.nextInt(1000));

@@ -28,7 +28,6 @@ public class MyLinkedList<T> implements List<T> {
 
 	@Override
 	public boolean contains(Object o) {
-		// TODO Implement!
 		for (T element : this) {
 			if (o.equals(element))
 				return true;
