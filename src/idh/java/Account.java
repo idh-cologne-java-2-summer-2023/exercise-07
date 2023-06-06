@@ -8,17 +8,17 @@ package idh.java;
  */
 public class Account {
 	// the balance of the account
-	int balance;
+	static int balance;
 	
 	// the id of the account
-	int id;
+	static int id;
 
 	public Account(int id, int status) {
 		this.id = id;
 		this.balance = status;
 	}
 	
-	public int getId() {
+	public static int getId() {
 		return id;
 	}
 
@@ -26,7 +26,7 @@ public class Account {
 		this.id = id;
 	}
 
-	public int getBalance() {
+	public static int getBalance() {
 		return balance;
 	}
 
