@@ -28,12 +28,24 @@ public class MyLinkedList<T> implements List<T> {
 
 	@Override
 	public boolean contains(Object o) {
-		// TODO Implement!
-		for (T x : this)
+			for (T x : this) {
+				if (o == null && x == null) {
+						return true;
+					}
+				else {
+					if (o.equals(x)) {
+						return true;
+					}
+				}
+			}
+			return false;
+		}
+
+		/*for (T x : this)
 			if (o.equals(x))
 				return true;
 		return false;
-	}
+		}*/
 
 	@Override
 	public Iterator<T> iterator() {
@@ -389,7 +401,10 @@ public class MyLinkedList<T> implements List<T> {
 		testReturn("toString()", "[Achtung,Welt]", list.toString());
 		testReturn("addAll()", true, list.addAll(1, Arrays.asList("I", "am", "an", "example")));
 		testReturn("toString()", "[Achtung,I,am,an,example,Welt]", list.toString());
-		
+		testReturn("contains('Achtung')", "true", list.contains("Achtung"));
+		testReturn("contains('moinerich')", "false", list.contains("moinerich"));
+
+
 		list.clear();
 		testReturn("size() after clear()", 0, list.size());
 
