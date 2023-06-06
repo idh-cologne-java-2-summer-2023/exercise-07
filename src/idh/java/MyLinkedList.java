@@ -27,29 +27,7 @@ public class MyLinkedList<T> implements List<T> {
 	@Override
 	public boolean contains(Object o) {
 
-		for (T x : this)
-			if (o.equals(x))
-				return true;
-		return false;
-		
-// hier folgt mein Versuch, leider funktioniert er nicht. Ich hab lange dran gesessen und
-// mich mit anderen ausgetauscht, aber hab leider keine funktionstüchtige Lösung geschafft. :(
-// hoffentlich bin ich nach der nächsten Sitzung schlauer :)		
-//		
-//		ListElement current = prefirst;
-//
-//		if (current.next == null) {
-//			return false;
-//		}
-//
-//		if (current.value.equals(o)) {
-//			return true;
-//		}
-//
-//		else
-//			return ((List<T>) current.next).contains(o);
-		
-
+		return prefirst.contains(o);
 
 	}
 
@@ -331,6 +309,23 @@ public class MyLinkedList<T> implements List<T> {
 			this.value = value;
 		}
 
+		public boolean contains(Object o) {
+			ListElement current = this.next;
+
+			if (current == null) {
+				return false;
+			}
+
+			if (current.value.equals(o)) {
+				return true;
+			}
+
+			else
+
+				return current.next.contains(o);
+
+		}
+
 		public int size() {
 			if (next == null)
 				return 1;
@@ -413,8 +408,7 @@ public class MyLinkedList<T> implements List<T> {
 		testReturn("toString()", "[Achtung,Welt]", list.toString());
 		testReturn("addAll()", true, list.addAll(1, Arrays.asList("I", "am", "an", "example")));
 		testReturn("toString()", "[Achtung,I,am,an,example,Welt]", list.toString());
-		testReturn("contains()", "true", list.contains("Achtung"));
-	
+		testReturn("contains()", true, list.contains("example"));
 
 		list.clear();
 		testReturn("size() after clear()", 0, list.size());
