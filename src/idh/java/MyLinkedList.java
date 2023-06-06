@@ -14,7 +14,7 @@ public class MyLinkedList<T> implements List<T> {
 	 * It nows whether there is a next element.
 	 */
 	ListElement prefirst = new ListElement(null);
-	
+	ListElement current = prefirst.next;
 	
 	@Override
 	public int size() {
@@ -28,12 +28,16 @@ public class MyLinkedList<T> implements List<T> {
 
 	@Override
 	public boolean contains(Object o) {
-		// TODO Implement!
-		for (T x : this)
-			if (o.equals(x))
-				return true;
+		if (o.equals(current)) {
+			return true;
+			} else if (current.next == null) {
+				return false;
+				} else {
+					current = current.next;
+					contains(o);
+					}
 		return false;
-	}
+		}
 
 	@Override
 	public Iterator<T> iterator() {
