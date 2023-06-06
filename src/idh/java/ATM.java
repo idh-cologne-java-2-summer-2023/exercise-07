@@ -45,20 +45,20 @@ public class ATM  {
 		}
 		
 		// check for existence of the account
-		Account account = getAccount(accountNumber);
+	/* 	Account account = getAccount(accountNumber);
 		if (account == null) {
 			System.out.println("Sorry, this account doesn't exist.");
 			return;
 		}
-		
+		*/
 		// check for balance of the account
-		if (amount > account.getBalance()) {
+		if (amount > Account.getBalance()) {
 			System.out.println("Sorry, you're out of money.");
 			return;
 		}
 		
 		// withdraw
-		account.withdraw(amount);
+		Account.withdraw(amount);
 		cash += amount;
 		System.out.println("Ok, here is your money, enjoy!");
 

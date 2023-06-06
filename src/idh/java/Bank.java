@@ -24,16 +24,26 @@ public class Bank implements Iterable<Account> {
 	public Account getAccount(int number) {
 		// TODO: Implement
 		// on it
+		//testing...
 		
 		HashMap<Integer, Integer> AccIDs = new HashMap<>();
 		while(true){
 		if (iterator().hasNext() == true){
 			//Account classObj = new Account(number, number);
-			Account.getId();
-			Account.getBalance();
-			AccIDs.put(Account.getId(),Account.getBalance());//I´m trying to add the new Account from the Bank method
+			//Account.getId();
+			//Account.getBalance();
+			AccIDs.put( Account.getId(),Account.getBalance());
+			//I´m trying to add the new Account from the Bank method
+			if (number == Account.getId()){
+				System.out.println(AccIDs.get(number));
+
+			}
+			
 
 
+		}
+		else{
+			return null;
 		}
 		return null;
 	}
