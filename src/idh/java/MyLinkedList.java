@@ -401,8 +401,8 @@ public class MyLinkedList<T> implements List<T> {
 		testReturn("toString()", "[Achtung,Welt]", list.toString());
 		testReturn("addAll()", true, list.addAll(1, Arrays.asList("I", "am", "an", "example")));
 		testReturn("toString()", "[Achtung,I,am,an,example,Welt]", list.toString());
-		testReturn("contains Achtung", "true", list.contains("Achtung"));
-		testReturn("contains Test", "false", list.contains("Test"));
+		testReturn("contains() Achtung", "true", list.contains("Achtung"));
+		testReturn("contains() Test", "false", list.contains("Test"));
 
 		list.clear();
 		testReturn("size() after clear()", 0, list.size());
