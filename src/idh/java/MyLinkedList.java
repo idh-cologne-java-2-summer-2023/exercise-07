@@ -11,7 +11,7 @@ public class MyLinkedList<T> implements List<T> {
 
 	/**
 	 * We only need to store a dummy -1th element of our list.
-	 * It nows whether there is a next element.
+	 * It knows whether there is a next element.
 	 */
 	ListElement prefirst = new ListElement(null);
 	
@@ -28,7 +28,7 @@ public class MyLinkedList<T> implements List<T> {
 
 	@Override
 	public boolean contains(Object o) {
-		// TODO Implement!
+		// TODO Implement! (Ist es nicht bereits erledigt?)
 		for (T x : this)
 			if (o.equals(x))
 				return true;
