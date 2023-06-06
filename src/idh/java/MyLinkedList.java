@@ -7,20 +7,25 @@ import java.util.List;
 import java.util.ListIterator;
 
 
+
 public class MyLinkedList<T> implements List<T> {
 
 	/**
 	 * We only need to store a dummy -1th element of our list.
 	 * It nows whether there is a next element.
 	 */
+	//ein Element wird vor dem Ersten Listenelement angelegt
 	ListElement prefirst = new ListElement(null);
 	
 	
 	@Override
 	public int size() {
 		return prefirst.size() - 1;
+		//hier ist die Rekursion von Size, da sich Size selbst aufruft
+		//-1 sorgt dafür, dass das prefirst-Element aus der Liste entfernt wird, da es sonst die Size() verfälschen würde
 	}
 
+	//mit is Empty prüfen wir, ob das erste element nach prefirst vorhanden ist. Ist dort nichts (also null) vorhanden, wird true rausgegeben, die Liste ist leer
 	@Override
 	public boolean isEmpty() {
 		return prefirst.next == null;
@@ -34,6 +39,8 @@ public class MyLinkedList<T> implements List<T> {
 				return true;
 		return false;
 	}
+	
+	
 
 	@Override
 	public Iterator<T> iterator() {
