@@ -9,140 +9,149 @@ import java.util.ListIterator;
 
 public class MyLinkedList<T> implements List<T> {
 
-	/**
-	 * We only need to store a dummy -1th element of our list.
-	 * It nows whether there is a next element.
-	 */
-	ListElement prefirst = new ListElement(null);
-	
-	
-	@Override
-	public int size() {
-		return prefirst.size() - 1;
-	}
+    /**
+     * We only need to store a dummy -1th element of our list.
+     * It nows whether there is a next element.
+     */
+    ListElement prefirst = new ListElement(null);
 
-	@Override
-	public boolean isEmpty() {
-		return prefirst.next == null;
-	}
 
-	@Override
-	public boolean contains(Object o) {
-		// TODO Implement!
-		for (T x : this)
-			if (o.equals(x))
-				return true;
-		return false;
-	}
+    @Override
+    public int size() {
+        return prefirst.size() - 1;
+    }
 
-	@Override
-	public Iterator<T> iterator() {
-		return new Iterator<T>() {
-			ListElement next = prefirst.next;
-			
-			@Override
-			public boolean hasNext() {
-				return next != null;
-			}
+    @Override
+    public boolean isEmpty() {
+        return prefirst.next == null;
+    }
 
-			@Override
-			public T next() {
-				T ret = next.value;
-				next = next.next;
-				return ret;
-			}
-		};
-	}
+    @Override
+    public boolean contains(Object o) {
+        return containsElement(prefirst.next, o);
+    }
 
-	@Override
-	public Object[] toArray() {
-		// TODO Implement!
-		return toArray(new Object[size()]);
-	}
+    private boolean containsElement(ListElement current, Object o) {
+        if (current == null) {
+            return false;
+        }
+        if (o.equals(current.value)) {
+            return true;
+        }
+        return containsElement(current.next, o);
+    }
 
-	@Override
-	public <E> E[] toArray(E[] a) {
-		if (a.length < size()) {
-			a = (E[]) new Object[size()];
-		}
-		int i = 0;
-		for (T t : this) {
-			a[i++] = (E) t;
-		}
-		return a;
-	}
+    @Override
+    public Iterator<T> iterator() {
+        return new Iterator<T>() {
+            ListElement next = prefirst.next;
 
-	@Override
-	public boolean add(T e) {
-		ListElement newListElement = new ListElement(e);
-		last().next = newListElement;
-		return true;
-	}
+            @Override
+            public boolean hasNext() {
+                return next != null;
+            }
 
-	@Override
-	public boolean remove(Object o) {
-		// TODO Implement!
-		ListIterator<T> li = this.listIterator();
-		boolean r = false;
-		while(li.hasNext()) {
-			T element = li.next();
-			if (!r && element.equals(o)) {
-				li.remove();
-				r = true;
-			}
-		}
-		return r;
-	}
+            @Override
+            public T next() {
+                T ret = next.value;
+                next = next.next;
+                return ret;
+            }
+        };
+    }
 
-	@Override
-	public boolean containsAll(Collection<?> c) {
-		for (Object o : c)
-			if (! contains(o))
-				return false;
-		return true;
-	}
+    @Override
+    public Object[] toArray() {
+        return toArray(new Object[size()]);
+    }
 
-	@Override
-	public boolean addAll(Collection<? extends T> c) {
-		for (T t : c) 
-			this.add(t);
-		return true;
-	}
+    @Override
+    public <E> E[] toArray(E[] a) {
+        if (a.length < size()) {
+            a = (E[]) new Object[size()];
+        }
+        int i = 0;
+        for (T t : this) {
+            a[i++] = (E) t;
+        }
+        return a;
+    }
 
-	@Override
-	public boolean addAll(int index, Collection<? extends T> c) {
-		// TODO Implement!
+    @Override
+    public boolean add(T e) {
+        ListElement newListElement = new ListElement(e);
+        last().next = newListElement;
+        return true;
+    }
 
-		// Create a new linked list for the collection
-		ListElement first=null, previous=null,current=null;
-		for (T x : c) {
-			current = new ListElement(x);
-			if (first == null) {
-				first = current;
-			} else {
-				previous.next = current;
-			}
-			previous = current;
-		}
-		
-		// insert the new list at the position
-		ListElement atPosition = getElement(index-1);
-		if (atPosition == null) {
-			return false;
-		}
-		current.next = atPosition.next;
-		atPosition.next = first;
-		
-		return true;
-	}
+    @Override
+    public boolean remove(Object o) {
+        ListIterator<T> li = this.listIterator();
+        boolean r = false;
+        while (li.hasNext()) {
+            T element = li.next();
+            if (!r && element.equals(o)) {
+                li.remove();
+                r = true;
+            }
+        }
+        return r;
+    }
 
-	@Override
-	public boolean removeAll(Collection<?> c) {
-		boolean r = true;
-		for (Object o : c) 
-			r = r || this.remove(o);
-		return r;
-	}
+    @Override
+    public boolean containsAll(Collection<?> c) {
+        for (Object o : c)
+            if (!contains(o))
+                return false;
+        return true;
+    }
+
+    @Override
+    public boolean addAll(Collection<? extends T> c) {
+        for (T t : c)
+            this.add(t);
+        return true;
+    }
+
+    @Override
+    public boolean addAll(int index, Collection<? extends T> c) {
+        // Create a new linked list for the collection
+        ListElement first = null, previous = null, current = null;
+        for (T x : c) {
+            current = new ListElement(x);
+            if (first == null) {
+                first = current;
+            } else {
+                previous.next = current;
+            }
+            previous = current;
+        }
+
+        // insert the new list at the position
+        ListElement atPosition = getElement(index - 1);
+        if (atPosition == null) {
+            return false;
+        }
+        current.next = atPosition.next;
+        atPosition.next = first;
+
+        return true;
+    }
+
+ 
+
+    public boolean removeAll(Collection<?> c) {
+        boolean r = false;
+        Iterator<T> iterator = this.iterator();
+        while (iterator.hasNext()) {
+            T element = iterator.next();
+            if (c.contains(element)) {
+                iterator.remove();
+                r = true;
+            }
+        }
+        return r;
+    }
 
 	@Override
 	public boolean retainAll(Collection<?> c) {
@@ -162,41 +171,50 @@ public class MyLinkedList<T> implements List<T> {
 			throw new IndexOutOfBoundsException();
 		}
 	}
-
 	@Override
 	public T set(int index, T element) {
-		// TODO Implement!
-
-		ListElement le = getElement(index);
-		T ret = le.value;
-		le.value = element;
-		return ret;
+	    ListElement listElement = getElement(index);
+	    if (listElement == null) {
+	        throw new IndexOutOfBoundsException();
+	    }
+	    T oldValue = listElement.value;
+	    listElement.value = element;
+	    return oldValue;
 	}
 
+	
 	@Override
 	public void add(int index, T element) {
-		// TODO Implement!
+	    if (index < 0 || index > size()) {
+	        throw new IndexOutOfBoundsException();
+	    }
 
-		ListElement atPosition = getElement(index-1);
-		ListElement newElement = new ListElement(element);
-		newElement.next = atPosition.next;
-		atPosition.next = newElement;
+	    ListElement previousElement = getElement(index - 1);
+	    ListElement newElement = new ListElement(element);
+	    newElement.next = previousElement.next;
+	    previousElement.next = newElement;
 	}
+
 
 	@Override
 	public T remove(int index) {
-		// TODO Implement!
+	    if (index < 0 || index >= size()) {
+	        throw new IndexOutOfBoundsException();
+	    }
 
-		ListElement atPreviousPosition = getElement(index-1);
-		T ret = atPreviousPosition.next.value;
-		atPreviousPosition.next  = atPreviousPosition.next.next;
-		return ret;
+	    ListElement previousElement = getElement(index - 1);
+	    ListElement elementToRemove = previousElement.next;
+	    T removedValue = elementToRemove.value;
+
+	    previousElement.next = elementToRemove.next;
+
+	    return removedValue;
 	}
+
 
 	@Override
 	public int indexOf(Object o) {
-		// TODO Implement!
-
+		
 		int i = 0;
 		for (T x : this) {
 			if (o.equals(x))
@@ -207,18 +225,24 @@ public class MyLinkedList<T> implements List<T> {
 	}
 
 	@Override
+	
 	public int lastIndexOf(Object o) {
-		// TODO Implement!
-
-		int lastIndex = -1;
-		int index = 0;
-		for (T x : this)  {
-			if (o.equals(x))
-				lastIndex = index;
-			index++;
-		}
-		return lastIndex;
+	    int lastIndex = -1;
+	    int index = 0;
+	    ListIterator<T> iterator = this.listIterator(size()); // Starte die Iteration am Ende der Liste
+	    
+	    while (iterator.hasPrevious()) {
+	        T element = iterator.previous();
+	        if (o.equals(element)) {
+	            lastIndex = index;
+	            break;
+	        }
+	        index++;
+	    }
+	    
+	    return lastIndex;
 	}
+
 
 	@Override
 	public ListIterator<T> listIterator() {
