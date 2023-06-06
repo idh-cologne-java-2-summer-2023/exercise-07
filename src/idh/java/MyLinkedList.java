@@ -29,10 +29,19 @@ public class MyLinkedList<T> implements List<T> {
 	@Override
 	public boolean contains(Object o) {
 		// TODO Implement!
+		// on it
 		for (T x : this)
-			if (o.equals(x))
+			if (o.equals(x)){
 				return true;
-		return false;
+			}
+			else{
+				return false;
+				current.next();
+				while(this.hasNext){//how the hell do I address this damn list?!
+
+				}
+			}
+				
 	}
 
 	@Override
