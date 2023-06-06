@@ -1,5 +1,6 @@
 package idh.java;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -15,14 +16,18 @@ public class MyLinkedList<T> implements List<T> {
 	 */
 	ListElement prefirst = new ListElement(null);
 	
-	public boolean containsHelper(Object o) {
-		if (prefirst == null) {
-			return false;
-		}
-		if (prefirst.equals(o)) {
-			return true;
-		}
-		return containsHelper(prefirst.next);
+	public String value;
+	
+	
+	// Tried using getElement(0) to start at first position but still get false on both contain calls in main. 
+	@Override
+	public boolean contains(Object o) {
+		if (getElement(0) == o){
+	        return true;
+	    }else if(prefirst.next == null){
+	        return false;
+	    }
+	    return prefirst.next.contains(o);
 	}
 	
 	@Override
@@ -33,11 +38,6 @@ public class MyLinkedList<T> implements List<T> {
 	@Override
 	public boolean isEmpty() {
 		return prefirst.next == null;
-	}
-
-	@Override
-	public boolean contains(Object o) {
-		return containsHelper(prefirst);
 	}
 
 	@Override
@@ -319,6 +319,11 @@ public class MyLinkedList<T> implements List<T> {
 			this.value = value;
 		}
 		
+		public boolean contains(Object o2) {
+			// TODO Auto-generated method stub
+			return false;
+		}
+
 		public int size() {
 			if (next == null) 
 				return 1;
@@ -377,49 +382,36 @@ public class MyLinkedList<T> implements List<T> {
 		
 
 	public static void main(String[] args) {
-		class MyClass {
-		    public static void main(String args[]) {
-		    List<String> list = new LinkedList<String>();
-		    list.add("A");
-		    list.add("B");
-		    list.add("C");
+		MyLinkedList<String> list = new MyLinkedList<String>();
+		
+//		testReturn("size() with an empty list", 0, list.size());
+//		testReturn("add()", true, list.add("Hallo"));
+//		testReturn("size() after add()", 1, list.size());
+//		testReturn("get(0)", "Hallo", list.get(0));
+//		testReturn("toString()", "[Hallo]", list.toString());
+//		testReturn("add()", true, list.add("Welt"));
+//		testReturn("toString()", "[Hallo,Welt]", list.toString());
+//		testReturn("get(1)", "Welt", list.get(0));
+//		list.add(0, "Achtung");
+//		testReturn("toString()", "[Achtung,Hallo,Welt]", list.toString());
+//		testReturn("set()", "Hallo", list.set(1, "Hello"));
+//		testReturn("toString()", "[Achtung,Hello,Welt]", list.toString());
+//		testReturn("remove()", "Hello", list.remove(1));
+//		testReturn("toString()", "[Achtung,Welt]", list.toString());
+//		testReturn("addAll()", true, list.addAll(1, Arrays.asList("I", "am", "an", "example")));
+//		testReturn("toString()", "[Achtung,I,am,an,example,Welt]", list.toString());
+//		
+//		list.clear();
+//		testReturn("size() after clear()", 0, list.size());
 
-		    System.out.println(list.contains("A")); // Output: true
-		    System.out.println(list.contains("D")); // Output: false
-		    }
-		    
-		    class CustomLinkedList {
-		    private Node head;
-		    private Node tail;
+		list.add("Guten Tag");
+		list.contains("Guten Tag");
+		list.contains("Guten Schmag");
+		System.out.println(list.contains("Guten Schmag"));
+		System.out.println(list.contains("Guten Tag"));
+		list.size();
+		System.out.println(list.size());
 
-		    class Node {
-		        String value;
-		        Node next;
 
-		        Node(String value) {
-		            this.value = value;
-		            this.next = null;
-		        }
-		    }
-
-		    public boolean contains(String value) {
-		        return containsHelper(head, value);
-		    }
-
-		    private boolean containsHelper(Node head, String value) {
-		        if (head == null) {
-		            return false;
-		        }
-
-		        if (head.value.equals(value)) {
-		            return true;
-		        }
-
-		        return containsHelper(head.next, value);
-		    }
-		}
-
-		    
-		}
 	}
 }
