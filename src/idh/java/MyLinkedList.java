@@ -28,21 +28,20 @@ public class MyLinkedList<T> implements List<T> {
 
 	@Override
 	public boolean contains(Object o) {
-		// TODO Implement!
 		// on it
 		for (T x : this)
 			if (o.equals(x)){
-				return true;
+			    return true;
+				
 			}
 			else{
-				return false;
-				current.next();
-				while(this.hasNext){//how the hell do I address this damn list?!
-
-				}
+			 next();//this is the command to move on to the next List element, right?
+				contains(o);
+					}
+					return false;
 			}
 				
-	}
+	
 
 	@Override
 	public Iterator<T> iterator() {
