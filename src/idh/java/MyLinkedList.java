@@ -35,7 +35,8 @@ public class MyLinkedList<T> implements List<T> {
 				
 			}
 			else{
-			 next();//this is the command to move on to the next List element, right?
+				ListIterator<T> li = this.listIterator();
+				li.next(); //this is the command to move on to the next List element, right?
 				contains(o);
 					}
 					return false;
