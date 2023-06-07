@@ -17,17 +17,15 @@ public class Bank implements Iterable<Account> {
 		Random random = new Random();
 		for (int i = 0; i < accounts.length; i++) {
 			accounts[i] = new Account(i, random.nextInt(1000));
-
-			// using loop to create
+			// using loop to
 			hmaccount.put(accounts[i].id, accounts[i]);
 
-			//
-			hmaccount.entrySet();
-			Set<Entry<Integer, Account>> entrySet = hmaccount.entrySet();
-			for (Entry<Integer, Account> e : entrySet) {
-				System.out.println(e.getKey() + " | " + e.getValue());
-
-			}
+//			//check out Number and Account unfinished
+//			hmaccount.entrySet();
+//			Set<Entry<Integer, Account>> entrySet = hmaccount.entrySet();
+//			for (Entry<Integer, Account> e : entrySet) {
+//				System.out.println(e.getKey() + " | " + e.getValue());
+//			}
 		}
 
 	}
@@ -37,7 +35,7 @@ public class Bank implements Iterable<Account> {
 		return new AccountIterator(accounts);
 	}
 
-	// Implement getAccount(int) to get account off account number
+	// Implement getAccount(int) to get info off accountn
 	public Account getAccount(int number) {
 		return hmaccount.get(number);
 	}
