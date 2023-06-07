@@ -333,6 +333,18 @@ public class MyLinkedList<T> implements List<T> {
 			else 
 				return 1 + next.size();
 		}
+		
+		public boolean contains(Object o) {
+			if(next == null) {
+				return false;
+			}
+			else if(o == value) {
+				return true;
+			}
+			else {
+				return next.contains(o);
+			}
+		}
 	}
 	
 	/**
