@@ -38,8 +38,14 @@ public class MyLinkedList<T> implements List<T> {
 				ListIterator<T> li = this.listIterator();
 				li.next(); //this is the command to move on to the next List element, right?
 				contains(o);
+				if (li.next()  == null){
+					return false;
+				
 					}
 					return false;
+					
+					
+					}
 			}
 				
 	
