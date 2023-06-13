@@ -21,7 +21,6 @@ public class Bank implements Iterable<Account> {
 	@Override
 	public Iterator<Account> iterator() {
 		return accounts.values().iterator();
-		//return new AccountIterator(accounts);
 	}
 	
 	public Account getAccount(int number) {
