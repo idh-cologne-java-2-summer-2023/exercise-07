@@ -1,6 +1,6 @@
 package idh.java;
 
-import java.util.Arrays;
+import java.util.Arrays; 
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -8,13 +8,7 @@ import java.util.ListIterator;
 
 
 public class MyLinkedList<T> implements List<T> {
-
-	/**
-	 * We only need to store a dummy -1th element of our list.
-	 * It nows whether there is a next element.
-	 */
-	ListElement prefirst = new ListElement(null);
-	
+    private ListElement prefirst = new ListElement(null);
 	
 	@Override
 	public int size() {
@@ -34,7 +28,7 @@ public class MyLinkedList<T> implements List<T> {
 				return true;
 		return false;
 	}
-
+	
 	@Override
 	public Iterator<T> iterator() {
 		return new Iterator<T>() {
@@ -53,7 +47,7 @@ public class MyLinkedList<T> implements List<T> {
 			}
 		};
 	}
-
+	
 	@Override
 	public Object[] toArray() {
 		// TODO Implement!
@@ -71,7 +65,7 @@ public class MyLinkedList<T> implements List<T> {
 		}
 		return a;
 	}
-
+	
 	@Override
 	public boolean add(T e) {
 		ListElement newListElement = new ListElement(e);
@@ -93,12 +87,14 @@ public class MyLinkedList<T> implements List<T> {
 		}
 		return r;
 	}
+	
 
 	@Override
 	public boolean containsAll(Collection<?> c) {
-		for (Object o : c)
-			if (! contains(o))
-				return false;
+		for (Object o : c) {
+			if (! contains(o)) {
+				return false;}
+}
 		return true;
 	}
 
@@ -112,30 +108,38 @@ public class MyLinkedList<T> implements List<T> {
 	@Override
 	public boolean addAll(int index, Collection<? extends T> c) {
 		// TODO Implement!
+	       return false;
+	    }
+	
+	private class ListElement {
+        T value;
+        ListElement next;
 
-		// Create a new linked list for the collection
-		ListElement first=null, previous=null,current=null;
-		for (T x : c) {
-			current = new ListElement(x);
-			if (first == null) {
-				first = current;
-			} else {
-				previous.next = current;
-			}
-			previous = current;
-		}
-		
-		// insert the new list at the position
-		ListElement atPosition = getElement(index-1);
-		if (atPosition == null) {
-			return false;
-		}
-		current.next = atPosition.next;
-		atPosition.next = first;
-		
-		return true;
+        ListElement(T value) {
+            this.value = value;
+        }
+
+        public int size() {
+            if (next == null)
+                return 1;
+            else
+                return 1 + next.size();
+        }
+    }
+
+	
+	public boolean contains(Object obj) {
+	    return containsRecursive(head, obj);
 	}
 
+	private boolean containsRecursive(Node current, Object obj) {
+	    if (current == null) {
+	        return false;
+	        }// Ende der Liste erreicht, das Element wurde nicht gefunden
+	    }
+	
+	
+	
 	@Override
 	public boolean removeAll(Collection<?> c) {
 		boolean r = true;
@@ -205,6 +209,7 @@ public class MyLinkedList<T> implements List<T> {
 		}
 		return -1;
 	}
+
 
 	@Override
 	public int lastIndexOf(Object o) {
