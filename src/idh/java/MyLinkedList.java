@@ -16,6 +16,7 @@ public class MyLinkedList<T> implements List<T> {
 	ListElement prefirst = new ListElement(null);
 	
 	
+	
 	@Override
 	public int size() {
 		return prefirst.size() - 1;
@@ -27,13 +28,9 @@ public class MyLinkedList<T> implements List<T> {
 	}
 
 	@Override
-	public boolean contains(Object o) {
-		// TODO Implement!
-		for (T x : this)
-			if (o.equals(x))
-				return true;
-		return false;
-	}
+    public boolean contains(Object o) {
+        return prefirst.contains(o);
+    }
 
 	@Override
 	public Iterator<T> iterator() {
@@ -305,22 +302,31 @@ public class MyLinkedList<T> implements List<T> {
 		
 	}
 	
-	private class ListElement {
-		T value;
-		ListElement next;
-		
-		ListElement(T value) {
-			this.value = value;
-		}
-		
-		public int size() {
-			if (next == null) 
-				return 1;
-			else 
-				return 1 + next.size();
-		}
-	}
-	
+    private class ListElement {
+        T value;
+        ListElement next;
+
+        ListElement(T value) {
+            this.value = value;
+        }
+
+        public int size() {
+            if (next == null)
+                return 1;
+            else
+                return 1 + next.size();
+        }
+
+        public boolean contains(Object o) {
+            if (o.equals(value)) {
+                return true;
+            } else if (next != null) {
+                return next.contains(o);
+            } else {
+                return false;
+            }
+        }
+    }
 	/**
 	 * Internal method that iterates over the list, returning the last element (i.e., the one whose next field is null)
 	 * @return
